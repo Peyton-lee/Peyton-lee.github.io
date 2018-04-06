@@ -1,0 +1,241 @@
+<!doctype html>
+<html lang="en">
+
+<!-- Head -->
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="description" content="">
+    <meta name="keyword" content="">
+    <link rel="shortcut icon" href="/image/favicon.jpeg">
+
+    
+
+    <title>
+        
+        Cocos Creator 制作 &#34;连连看&#34; 教程 |
+        
+        Peyton Blog
+    </title>
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+
+    <!-- Custom Fonts -->
+    <link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <!-- Plugin CSS -->
+
+
+    <!-- Custom CSS -->
+    <!-- ↓这是stylus文件 -->
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/home.css">
+    <link rel="stylesheet" href="/css/highlight.css">
+    <link rel="stylesheet" href="/css/toc.css">
+
+
+</head>
+<body></body>
+
+
+<body>
+
+<!-- Header -->
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header {
+     background-image: url('head.png');
+        /*post*/
+    
+    }
+</style>
+
+<header class="intro-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <!-- 文章 -->
+                
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                        <a class="tag" href="/tags/#Cocos-Creator"
+                           title="Cocos-Creator">Cocos-Creator</a>
+                        
+                    </div>
+                    <h1>Cocos Creator 制作 &#34;连连看&#34; 教程</h1>
+                    <h2 class="subheading">Creator 入门</h2>
+                    <span class="meta">
+                            Posted by Peyton on
+                        2018-04-05
+                        </span>
+                </div>
+                <!-- 非文章 -->
+                
+
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Nav -->
+<!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Peyton Blog</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    
+                    <li><a href="/">Home</a></li>
+                    
+                    <li><a href="/portfolio">Portfolio</a></li>
+                    
+                    <li><a href="/about">About</a></li>
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+
+<!-- Content -->
+<!-- Content -->
+<div class="container">
+    <div class="row">
+        <!-- Post container -->
+
+        <div class="
+                col-lg-8 col-lg-offset-1
+                col-md-8 col-md-offset-1
+                col-sm-12
+                col-xs-12
+                post-container
+            ">
+
+            <p><br></p>
+<h2 id="Cocos-Creator"><a href="#Cocos-Creator" class="headerlink" title=" Cocos Creator"></a><a href="http://www.cocos.com/" target="_blank" rel="noopener"><i class="fa fa-link"></i> Cocos Creator</a></h2><blockquote>
+<p>最近因为业务需求，需要能够对接<strong>QQ玩一玩</strong>，从<code>coco2dx</code>转到<code>cocos creator</code>，所以抽了几个晚上的空写了一些小游戏当过度，刚好趁假期写下blog，就把它写成教程丢上来了，对<code>creator</code>有兴趣的朋友可以点上面的链接到官网看一下。</p>
+</blockquote>
+<hr>
+<h3 id="需要掌握的基础"><a href="#需要掌握的基础" class="headerlink" title="需要掌握的基础"></a>需要掌握的基础</h3><ul>
+<li style="list-style: none"><input type="checkbox" checked> cocos2dx-js基础</li>
+<li style="list-style: none"><input type="checkbox" checked> cocos creator基础</li>
+<li style="list-style: none"><input type="checkbox" checked> javascript基础</li>
+</ul>
+<hr>
+<h3 id="游戏逻辑"><a href="#游戏逻辑" class="headerlink" title="游戏逻辑"></a>游戏逻辑</h3><blockquote>
+<p>连连看的逻辑是比较简单的，点击两个图片，确保两个图片能够连起来的情况下拐点不超过两个就算通过，可以消除，肢解一下这块逻辑(点击点A跟点B)下面三种是可以通过的情况</p>
+</blockquote>
+<p>1) 假如点A与点B同一直线，即x或y坐标相同，如下图<br><br><img src="./option1.png" alt="option1"><br></p>
+<p>2）假如点A与点B不在同一直线，但是经过一个拐点可以把这两个点连接起来，如下图<br><br><img src="./option2.png" alt="option2"><br></p>
+<p>3）假如点A与点B不在同一直线，但是经过两个拐点可以把这两个点连接起来，如下图<br><br><img src="./option3.png" alt="option3"><br></p>
+<hr>
+<h3 id="代码编辑"><a href="#代码编辑" class="headerlink" title="代码编辑"></a>代码编辑</h3><p>初始化数据池(写于ctor构造函数)</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 存放所有盒子的数据结构</span></span><br><span class="line"><span class="keyword">this</span>.arr = [];</span><br><span class="line"><span class="comment">// 存放所有的盒子实例</span></span><br><span class="line"><span class="keyword">this</span>._boxArrs = [];</span><br><span class="line"><span class="comment">// 存放选择的盒子</span></span><br><span class="line"><span class="keyword">this</span>.selectId = <span class="literal">null</span>;</span><br><span class="line"><span class="comment">// 存放点击的盒子</span></span><br><span class="line"><span class="keyword">this</span>.clickId = <span class="literal">null</span>;</span><br><span class="line"><span class="comment">// 记录是否可以消除</span></span><br><span class="line"><span class="keyword">this</span>.pass = <span class="literal">false</span>;</span><br><span class="line"><span class="comment">// 存放划线元素</span></span><br><span class="line"><span class="keyword">this</span>._lineNodes = [];</span><br><span class="line"><span class="comment">// 行</span></span><br><span class="line"><span class="keyword">this</span>.row = Global._type;</span><br><span class="line"><span class="comment">// 列</span></span><br><span class="line"><span class="keyword">this</span>.col = Global._type;</span><br></pre></td></tr></table></figure>
+<p>设置好盒子的材质(写于properties属性定义)<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 盒子的预加载资源</span></span><br><span class="line">box: &#123;</span><br><span class="line">    <span class="keyword">default</span>: <span class="literal">null</span>,</span><br><span class="line">    type: cc.Prefab</span><br><span class="line">&#125;,</span><br><span class="line"></span><br><span class="line"><span class="comment">// 盒子上面的图案资源</span></span><br><span class="line">picArrs: &#123;</span><br><span class="line">    <span class="keyword">default</span>: [],</span><br><span class="line">    type: [cc.SpriteFrame]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>首先获取随机的盒子材质准备赋值给盒子<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 根据行数裁剪材质数组(例如：4x4的话就只有4种不同的图片)</span></span><br><span class="line"><span class="keyword">let</span> _randomArr = <span class="keyword">this</span>.picArrs.slice(<span class="number">0</span>, <span class="keyword">this</span>.row);</span><br><span class="line"><span class="comment">// 获取随机数组</span></span><br><span class="line"><span class="keyword">const</span> arrs = <span class="keyword">this</span>.getSortArrs(_randomArr, <span class="keyword">this</span>.row, <span class="keyword">this</span>.col);</span><br><span class="line"></span><br><span class="line">getSortArrs(arrs, row, col) &#123;</span><br><span class="line">    <span class="keyword">let</span> result = [];</span><br><span class="line">    <span class="keyword">let</span> times = row * col / arrs.length;</span><br><span class="line">    <span class="keyword">if</span> (times.toString().indexOf(<span class="string">"."</span>) &gt;= <span class="number">0</span> || times % <span class="number">2</span> !== <span class="number">0</span>) &#123;</span><br><span class="line">        cc.log(<span class="string">"随机图片的个数不平均"</span>);</span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; arrs.length; i++) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">let</span> j = <span class="number">0</span>; j &lt; times; j++) result.push(&#123;</span><br><span class="line">            <span class="comment">// +1是为了不让 索引 == 0 方便后面判断</span></span><br><span class="line">            type: i + <span class="number">1</span>,</span><br><span class="line">            texture: arrs[i]</span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 随机打乱顺序</span></span><br><span class="line">    result.sort(<span class="function">(<span class="params">a, b</span>) =&gt;</span> cc.random0To1() &gt; <span class="number">0.5</span> ? <span class="number">1</span> : <span class="number">-1</span>);</span><br><span class="line">    <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>遍历生成盒子实例并绑定盒子点击事件(行数列数<code>+2</code>是因为最外层还有一层可以走)<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 计算每个盒子宽度</span></span><br><span class="line"><span class="keyword">this</span>._boxWidth = showW / <span class="keyword">this</span>.col;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 初始化数据结构(+2表示所有盒子外面套多一层没有null的空盒子作为路径)</span></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; <span class="keyword">this</span>.row + <span class="number">2</span>; i++) &#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> j = <span class="number">0</span>; j &lt; <span class="keyword">this</span>.col + <span class="number">2</span>; j++) &#123;</span><br><span class="line">        <span class="keyword">let</span> o = &#123;</span><br><span class="line">            point: [j, i],</span><br><span class="line">            box: <span class="literal">null</span>,</span><br><span class="line">            val: <span class="literal">null</span>,</span><br><span class="line">            pos: <span class="literal">null</span>,</span><br><span class="line">            index: j + i * (<span class="keyword">this</span>.col + <span class="number">2</span>)</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">let</span> x = -winSizeW / <span class="number">2</span> + (winSizeW - <span class="keyword">this</span>._boxWidth * <span class="keyword">this</span>.col) / <span class="number">2</span> + (j - <span class="number">1</span> / <span class="number">2</span>) * <span class="keyword">this</span>._boxWidth;</span><br><span class="line">        <span class="keyword">let</span> y = <span class="number">270</span> - (i - <span class="number">1</span>) * <span class="keyword">this</span>._boxWidth;</span><br><span class="line">        o.pos = cc.p(x, y);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (i !== <span class="number">0</span> &amp;&amp; j !== <span class="number">0</span> &amp;&amp; i !== <span class="keyword">this</span>.col + <span class="number">1</span> &amp;&amp; j !== <span class="keyword">this</span>.row + <span class="number">1</span>) &#123;</span><br><span class="line">            <span class="keyword">let</span> index = (j - <span class="number">1</span>) + (i - <span class="number">1</span>) * <span class="keyword">this</span>.col;</span><br><span class="line">            o.val = arrs[index].type;</span><br><span class="line">            <span class="keyword">let</span> box = cc.instantiate(<span class="keyword">this</span>.box);</span><br><span class="line">            <span class="keyword">this</span>.node.addChild(box);</span><br><span class="line"></span><br><span class="line">            <span class="keyword">let</span> dynamicNode = <span class="keyword">new</span> cc.Node();</span><br><span class="line">            <span class="keyword">let</span> sp = dynamicNode.addComponent(cc.Sprite);</span><br><span class="line">            sp.spriteFrame = arrs[index].texture;</span><br><span class="line">            box.addChild(dynamicNode)</span><br><span class="line"></span><br><span class="line">            <span class="comment">// let textLabel = box.getChildByName("label");</span></span><br><span class="line">            <span class="comment">// textLabel.getComponent(cc.Label).string = o.val;</span></span><br><span class="line">            box.setScale(<span class="keyword">this</span>._boxWidth / box.width);</span><br><span class="line">            box.setPosition(o.pos);</span><br><span class="line">            box.setTag(o.index);</span><br><span class="line">            o.box = box;</span><br><span class="line">            <span class="keyword">this</span>._boxArrs.push(box);</span><br><span class="line"></span><br><span class="line">            <span class="comment">// 绑定点击事件</span></span><br><span class="line">            box.on(cc.Node.EventType.TOUCH_END, (event) =&gt; &#123;</span><br><span class="line">                <span class="comment">// let id = +event.currentTarget.getChildByName('label').getComponent(cc.Label).string;</span></span><br><span class="line">                <span class="keyword">let</span> tag = event.currentTarget.getTag();</span><br><span class="line">                <span class="keyword">if</span> (!<span class="keyword">this</span>.arr[tag].box) <span class="keyword">return</span>;</span><br><span class="line">                <span class="keyword">if</span> (!<span class="keyword">this</span>.selectId) &#123;</span><br><span class="line">                    <span class="keyword">this</span>.selectId = tag;</span><br><span class="line">                    <span class="keyword">this</span>.pass = <span class="literal">false</span>;</span><br><span class="line">                    cc.log(<span class="string">"selectId = "</span>, <span class="keyword">this</span>.arr[tag].val);</span><br><span class="line">                &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                    <span class="keyword">if</span> (tag === <span class="keyword">this</span>.selectId) <span class="keyword">return</span>;</span><br><span class="line">                    <span class="keyword">this</span>.clickId = tag;</span><br><span class="line">                    <span class="keyword">let</span> points = <span class="keyword">this</span>.checkAction(<span class="keyword">this</span>.arr[<span class="keyword">this</span>.selectId], <span class="keyword">this</span>.arr[tag], <span class="literal">true</span>);</span><br><span class="line">                    <span class="keyword">if</span> (points.length == <span class="number">0</span>) &#123;</span><br><span class="line">                        <span class="keyword">this</span>.selectId = <span class="literal">null</span>;</span><br><span class="line">                    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                        <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; points.length - <span class="number">1</span>; i++) &#123;</span><br><span class="line">                            <span class="keyword">this</span>.drawLine(points[i], points[i + <span class="number">1</span>]);</span><br><span class="line">                        &#125;</span><br><span class="line">                        <span class="keyword">this</span>.scheduleOnce(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">                            <span class="keyword">this</span>._lineNodes.forEach(<span class="function">(<span class="params">item</span>) =&gt;</span> &#123;</span><br><span class="line">                                item.clear();</span><br><span class="line">                            &#125;)</span><br><span class="line">                            <span class="keyword">this</span>.clickPass();</span><br><span class="line">                        &#125;, <span class="number">0.3</span>)</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;)</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">this</span>.arr[o.index] = o;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><code>关键逻辑：</code>判断是否能够消除按照我们前面讲的那三种情况来一步步排除，如果可以消除返回拐点数组，如果是在同一直线，拐点数组就是[点A, 点B]<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 检查两个点是否可以划掉 返回所有拐点数组 第三个参数needCheckVal表示是否需要判断两个点的val是否一致即是否需要判断是同张图片</span></span><br><span class="line">checkAction(targetA, targetB, needCheckVal) &#123;</span><br><span class="line">    <span class="keyword">if</span> (!<span class="keyword">this</span>.checkDoublePass(targetA, targetB) &amp;&amp; needCheckVal) <span class="keyword">return</span> [];</span><br><span class="line">    <span class="keyword">if</span> ((targetA.point[<span class="number">0</span>] === targetB.point[<span class="number">0</span>] || targetA.point[<span class="number">1</span>] === targetB.point[<span class="number">1</span>]) &amp;&amp; <span class="keyword">this</span>.checkDoublePoint(targetA, targetB)) &#123;</span><br><span class="line">        <span class="keyword">return</span> [targetA, targetB];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">let</span> a_points = <span class="keyword">this</span>.getPointAround(targetA),</span><br><span class="line">        b_points = <span class="keyword">this</span>.getPointAround(targetB),</span><br><span class="line">        inflec_point = <span class="literal">null</span>,</span><br><span class="line">        _ok = <span class="literal">false</span>;</span><br><span class="line">    a_points.forEach(<span class="function">(<span class="params">item</span>) =&gt;</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> (_ok) <span class="keyword">return</span>;</span><br><span class="line">        b_points.forEach(<span class="function">(<span class="params">_item</span>) =&gt;</span> &#123;</span><br><span class="line">            <span class="keyword">if</span> (item.index === _item.index) &#123;</span><br><span class="line">                inflec_point = item;</span><br><span class="line">                _ok = <span class="literal">true</span>;</span><br><span class="line">                <span class="keyword">return</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;)</span><br><span class="line">    <span class="keyword">if</span> (inflec_point) &#123;</span><br><span class="line">        <span class="keyword">return</span> [targetA, inflec_point, targetB];</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">let</span> result = [];</span><br><span class="line">        a_points.forEach(<span class="function">(<span class="params">item</span>) =&gt;</span> &#123;</span><br><span class="line">            <span class="keyword">if</span> (<span class="keyword">this</span>.pass) <span class="keyword">return</span>;</span><br><span class="line">            b_points.forEach(<span class="function">(<span class="params">_item</span>) =&gt;</span> &#123;</span><br><span class="line">                <span class="keyword">if</span> ((item.point[<span class="number">0</span>] === _item.point[<span class="number">0</span>] || item.point[<span class="number">1</span>] === _item.point[<span class="number">1</span>]) &amp;&amp; <span class="keyword">this</span>.checkDoublePoint(item, _item)) &#123;</span><br><span class="line">                    <span class="keyword">this</span>.pass = <span class="literal">true</span>;</span><br><span class="line">                    result = [targetA, item, _item, targetB];</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;)</span><br><span class="line">        &#125;)</span><br><span class="line">        <span class="keyword">return</span> result</span><br><span class="line">    &#125;</span><br><span class="line">&#125;,</span><br><span class="line"></span><br><span class="line"><span class="comment">// 判断两个点的值是否一致</span></span><br><span class="line">checkDoublePass(a, b) &#123;</span><br><span class="line">    <span class="keyword">return</span> a.val === b.val</span><br><span class="line">&#125;,</span><br><span class="line"></span><br><span class="line"><span class="comment">// 判断两个同一直线的点之间的格子是否中间有阻碍</span></span><br><span class="line">checkDoublePoint(a, b) &#123;</span><br><span class="line">    <span class="keyword">if</span> (a.point[<span class="number">0</span>] === b.point[<span class="number">0</span>]) &#123;</span><br><span class="line">        <span class="keyword">if</span> (a.point[<span class="number">1</span>] &gt; b.point[<span class="number">1</span>]) &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">let</span> i = b.point[<span class="number">1</span>] + <span class="number">1</span>; i &lt; a.point[<span class="number">1</span>]; i++) &#123;</span><br><span class="line">                <span class="keyword">let</span> index = a.point[<span class="number">0</span>] + i * (<span class="keyword">this</span>.row + <span class="number">2</span>);</span><br><span class="line">                <span class="keyword">if</span> (<span class="keyword">this</span>.arr[index].val) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">let</span> i = b.point[<span class="number">1</span>] - <span class="number">1</span>; i &gt; a.point[<span class="number">1</span>]; i--) &#123;</span><br><span class="line">                <span class="keyword">let</span> index = a.point[<span class="number">0</span>] + i * (<span class="keyword">this</span>.row + <span class="number">2</span>);</span><br><span class="line">                <span class="keyword">if</span> (<span class="keyword">this</span>.arr[index].val) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> (a.point[<span class="number">0</span>] &gt; b.point[<span class="number">0</span>]) &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">let</span> i = b.point[<span class="number">0</span>] + <span class="number">1</span>; i &lt; a.point[<span class="number">0</span>]; i++) &#123;</span><br><span class="line">                <span class="keyword">let</span> index = i + b.point[<span class="number">1</span>] * (<span class="keyword">this</span>.row + <span class="number">2</span>);</span><br><span class="line">                <span class="keyword">if</span> (<span class="keyword">this</span>.arr[index].val) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">let</span> i = b.point[<span class="number">0</span>] - <span class="number">1</span>; i &gt; a.point[<span class="number">0</span>]; i--) &#123;</span><br><span class="line">                <span class="keyword">let</span> index = i + b.point[<span class="number">1</span>] * (<span class="keyword">this</span>.row + <span class="number">2</span>);</span><br><span class="line">                <span class="keyword">if</span> (<span class="keyword">this</span>.arr[index].val) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>判断是否通关，只需要遍历一下数据结构看看盒子都被destroy了么就行了<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 检查是否结束游戏</span></span><br><span class="line">checkGameSuccess() &#123;</span><br><span class="line">    <span class="keyword">let</span> result = <span class="keyword">this</span>.arr.every(<span class="function"><span class="params">item</span> =&gt;</span> !item.box);</span><br><span class="line">    <span class="keyword">if</span> (result) &#123;</span><br><span class="line">        cc.director.loadScene(<span class="string">'Pass'</span>);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">this</span>.checkEnable();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>其实除了上述功能之外，连连看还有一个隐藏的功能需要实现，因为一开始随机出来的数组有可能出现无解的情况，例如只剩下最后四个盒子，两种不同的图片，但是交叉了，这种情况就无解了，所以这里需要每次pass的时候做多一次check，如果无解的话需要找到一对可以解决的路径换盒子，细心的朋友看下面的代码就会发现我把它封装成提示的函数，😝☺️☺️其实是为了做多一个提示的功能，逻辑实现了但是没做这个功能&lt;{=．．．．(嘎~嘎~嘎~)。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 检查是否无解</span></span><br><span class="line">checkEnable() &#123;</span><br><span class="line">    <span class="comment">// 不存在可提示的即无解</span></span><br><span class="line">    <span class="keyword">let</span> tip = <span class="keyword">this</span>.findTip();</span><br><span class="line">    <span class="keyword">if</span> (tip.length == <span class="number">0</span>) &#123;</span><br><span class="line">        cc.log(<span class="string">"无解!!! 替换位置"</span>)</span><br><span class="line">        <span class="keyword">this</span>.updateLayout();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;,</span><br><span class="line"></span><br><span class="line"><span class="comment">// 提示</span></span><br><span class="line">findTip() &#123;</span><br><span class="line">    <span class="keyword">let</span> _map = [];</span><br><span class="line">    <span class="keyword">this</span>.arr.forEach(<span class="function">(<span class="params">item</span>) =&gt;</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> (item.box) &#123;</span><br><span class="line">            _map[item.val] ? _map[item.val].push(item) : (_map[item.val] = [item]);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">    <span class="keyword">let</span> _pass = <span class="literal">false</span>;</span><br><span class="line">    <span class="keyword">let</span> result = [];</span><br><span class="line">    _map.forEach(<span class="function">(<span class="params">item</span>) =&gt;</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> (_pass) <span class="keyword">return</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; item.length; i++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (_pass) <span class="keyword">break</span>;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">let</span> j = i + <span class="number">1</span>; j &lt; item.length; j++) &#123;</span><br><span class="line">                <span class="keyword">if</span> (_pass) <span class="keyword">break</span>;</span><br><span class="line">                <span class="keyword">let</span> points = <span class="keyword">this</span>.checkAction(item[i], item[j], <span class="literal">true</span>);</span><br><span class="line">                <span class="keyword">if</span> (points.length &gt; <span class="number">0</span>) &#123;</span><br><span class="line">                    _pass = <span class="literal">true</span>;</span><br><span class="line">                    result = points;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">    <span class="keyword">return</span> result</span><br><span class="line">&#125;,</span><br><span class="line"></span><br><span class="line"><span class="comment">// 无解的情况下再次打乱布局 保证有解</span></span><br><span class="line">updateLayout() &#123;</span><br><span class="line">    <span class="keyword">let</span> _pass = <span class="literal">false</span>;</span><br><span class="line">    <span class="keyword">this</span>.arr.forEach(<span class="function">(<span class="params">item</span>) =&gt;</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> (_pass) <span class="keyword">return</span>;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 找到随意的一个还没划掉的点C</span></span><br><span class="line">        <span class="keyword">if</span> (item.box) &#123;</span><br><span class="line"></span><br><span class="line">            <span class="comment">// 找出准备替换位置的两个点A(同C一样的值)，B(不同C的值且能跟C划掉)</span></span><br><span class="line">            <span class="keyword">let</span> targetPointA,</span><br><span class="line">                targetPointB;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">this</span>.arr.forEach(<span class="function">(<span class="params">_item</span>) =&gt;</span> &#123;</span><br><span class="line">                <span class="keyword">if</span> (!_item.box) <span class="keyword">return</span>;</span><br><span class="line">                <span class="keyword">if</span> (!targetPointA &amp;&amp; item.val === _item.val &amp;&amp; item.index !== _item.index) &#123;</span><br><span class="line">                    targetPointA = _item;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">let</span> points = <span class="keyword">this</span>.checkAction(item, _item, <span class="literal">false</span>);</span><br><span class="line">                <span class="keyword">if</span> (!targetPointB &amp;&amp; item.val !== _item.val &amp;&amp; points.length &gt; <span class="number">0</span>) &#123;</span><br><span class="line">                    targetPointB = _item;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="comment">// 找到两个点就停止内循环减少算法计算</span></span><br><span class="line">                <span class="keyword">if</span> (targetPointA &amp;&amp; targetPointB) <span class="keyword">return</span>;</span><br><span class="line">            &#125;)</span><br><span class="line"></span><br><span class="line">            <span class="comment">// 找到两个点就替换两个点的位置并停止外循环减少算法计算</span></span><br><span class="line">            <span class="keyword">if</span> (targetPointA &amp;&amp; targetPointB) &#123;</span><br><span class="line">                <span class="keyword">this</span>.updateDoublePoint(targetPointA, targetPointB);</span><br><span class="line">                _pass = <span class="literal">true</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;,</span><br><span class="line"></span><br><span class="line"><span class="comment">// 替换两个点的盒子</span></span><br><span class="line">updateDoublePoint(targetA, targetB) &#123;</span><br><span class="line">    <span class="keyword">let</span> _ = &#123;</span><br><span class="line">        val: targetA.val,</span><br><span class="line">        box: targetA.box,</span><br><span class="line">    &#125;</span><br><span class="line">    targetA.val = targetB.val;</span><br><span class="line">    targetA.box = targetB.box;</span><br><span class="line">    targetB.val = _.val;</span><br><span class="line">    targetB.box = _.box;</span><br><span class="line"></span><br><span class="line">    [targetA, targetB].map(<span class="function">(<span class="params">item</span>) =&gt;</span> &#123;</span><br><span class="line">        item.box.setTag(item.index);</span><br><span class="line">        item.box.runAction(cc.moveTo(<span class="number">0.3</span>, item.pos));</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><br></p>
+<h3 id="构建发布"><a href="#构建发布" class="headerlink" title="构建发布"></a>构建发布</h3><blockquote>
+<p>最后就是构建发布了，这里我选择了Web，因为Mac还没配好所有环境~~~尴尬脸，而Web是最简单的，只需要一个文件服务器就够用了，毕竟我们这里没用到后台，你甚至可以用GitHub提供的GitHub Pages，构建完点击发布路劲右边的打开按钮找到生成的所有Web文件，然后丢到你的文件服务器上面就可以展示了。</p>
+</blockquote>
+<hr>
+<p><img src="./gg.png" alt="gg"></p>
+<h3 id="效果展示"><a href="#效果展示" class="headerlink" title="效果展示"></a>效果展示</h3>
+
+
+            <!-- Pager -->
+            <ul class="pager">
+                
+                
+            </ul>
+
+
+
+        </div>
+        <!-- Sidebar container-->
+        <div class="
+    col-lg-3 col-lg-offset-0
+    col-md-3 col-md-offset-0
+    col-sm-12
+    col-xs-12
+    sidebar-container
+">
+            <!-- toc -->
+            <div class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix-top" role="complementary">
+                <h4><i class="fa fa-bookmark"></i> Catalog</h4>
+                <ul class="nav bs-docs-sidenav">
+
+                </ul>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!-- Footer -->
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; Peyton Blog 2018
+                    <br>
+                    Theme by <a href="http://beantech.org/">Bean Tech</a>
+                    <span style="display: inline-block; margin: 0 5px;">
+                        <i class="fa fa-heart"></i>
+                    </span> 
+                    re-Ported by <a href="http://yoursite.com">Peyton Blog</a>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="https://cdn.staticfile.org/jquery/2.2.4/jquery.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/script.js"></script>
+
+
+
+
+</body>
+</html>
