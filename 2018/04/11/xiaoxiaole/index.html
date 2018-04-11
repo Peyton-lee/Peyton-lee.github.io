@@ -1,0 +1,225 @@
+<!doctype html>
+<html lang="en">
+
+<!-- Head -->
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="description" content="">
+    <meta name="keyword" content="">
+    <link rel="shortcut icon" href="/image/favicon.jpeg">
+
+    
+
+    <title>
+        
+        Cocos Creator 制作 &#34;消消乐&#34; |
+        
+        Peyton Blog
+    </title>
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+
+    <!-- Custom Fonts -->
+    <link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <!-- Plugin CSS -->
+
+
+    <!-- Custom CSS -->
+    <!-- ↓这是stylus文件 -->
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/home.css">
+    <link rel="stylesheet" href="/css/highlight.css">
+    <link rel="stylesheet" href="/css/toc.css">
+
+
+</head>
+<body></body>
+
+
+<body>
+
+<!-- Header -->
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header {
+     background-image: url('head.png');
+        /*post*/
+    
+    }
+</style>
+
+<header class="intro-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <!-- 文章 -->
+                
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                        <a class="tag" href="/tags/#Cocos-Creator"
+                           title="Cocos-Creator">Cocos-Creator</a>
+                        
+                    </div>
+                    <h1>Cocos Creator 制作 &#34;消消乐&#34;</h1>
+                    <h2 class="subheading">Creator 入门</h2>
+                    <span class="meta">
+                            Posted by Peyton on
+                        2018-04-11
+                        </span>
+                </div>
+                <!-- 非文章 -->
+                
+
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Nav -->
+<!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Peyton Blog</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    
+                    <li><a href="/">Home</a></li>
+                    
+                    <li><a href="https://github.com/Peyton-lee">GitHub</a></li>
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+
+<!-- Content -->
+<!-- Content -->
+<div class="container">
+    <div class="row">
+        <!-- Post container -->
+
+        <div class="
+                col-lg-8 col-lg-offset-1
+                col-md-8 col-md-offset-1
+                col-sm-12
+                col-xs-12
+                post-container
+            ">
+
+            <p><br></p>
+<h2 id="逻辑解析"><a href="#逻辑解析" class="headerlink" title="逻辑解析"></a>逻辑解析</h2><blockquote>
+<p>消消乐相对于连连看来说，逻辑要简单得多，构建一个坐标系，创建坐标系格子并绑定点击事件，处理点击事件用到<code>递归</code>搜索消除点得到一个格子数组，然后根据消除的点获取Y坐标拿到需要玩下“砸”的盒子，<code>倒序</code>遍历格子，判断该格子下面有几个空的位置就往下掉几个位置，然后每次别忘记判断是否没有可点的区块即可，废话少说，直接上代码。<br><strong>源码地址</strong> <a href="https://github.com/Peyton-lee/smallGame" target="_blank" rel="noopener">https://github.com/Peyton-lee/smallGame</a><br><a href="https://peyton-lee.github.io/webServer/smallGame/" target="_blank" rel="noopener"><strong>最终效果展示(GitHub的服务器可能有点卡)</strong></a></p>
+</blockquote>
+<hr>
+<h3 id="需要掌握的基础"><a href="#需要掌握的基础" class="headerlink" title="需要掌握的基础"></a>需要掌握的基础</h3><ul>
+<li style="list-style: none"><input type="checkbox" checked> cocos creator基础</li>
+<li style="list-style: none"><input type="checkbox" checked> javascript基础</li>
+</ul>
+<hr>
+<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><p>老规矩，初始化数据池<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">this</span>.row = <span class="number">8</span>;</span><br><span class="line"><span class="keyword">this</span>.col = <span class="number">8</span>;</span><br><span class="line"><span class="keyword">this</span>._probability = <span class="number">0.008</span>; <span class="comment">// 炸弹几率</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 存放所有盒子的数据结构</span></span><br><span class="line"><span class="keyword">this</span>.arr = [];</span><br></pre></td></tr></table></figure></p>
+<p>渲染所有格子，这里实例化封装成函数<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 获取随机数组</span></span><br><span class="line"><span class="keyword">this</span>._arrs = <span class="keyword">this</span>.getSortArrs(<span class="keyword">this</span>.picArrs.slice(<span class="number">0</span>, <span class="number">6</span>), <span class="keyword">this</span>.row, <span class="keyword">this</span>.col);</span><br><span class="line"><span class="keyword">if</span> (<span class="keyword">this</span>._arrs.length === <span class="number">0</span>) <span class="keyword">return</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 计算每个盒子宽度</span></span><br><span class="line"><span class="keyword">this</span>._boxWidth = winSize.width / <span class="keyword">this</span>.col;</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; <span class="keyword">this</span>.row; i++) &#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> j = <span class="number">0</span>; j &lt; <span class="keyword">this</span>.col; j++) &#123;</span><br><span class="line">        <span class="keyword">let</span> o = &#123;</span><br><span class="line">            point: [j, i],</span><br><span class="line">            box: <span class="literal">null</span>,</span><br><span class="line">            val: <span class="literal">null</span>,</span><br><span class="line">            pos: <span class="literal">null</span>,</span><br><span class="line">            isValid: <span class="literal">true</span>,</span><br><span class="line">            index: j + i * <span class="keyword">this</span>.col</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">let</span> x = -winSize.width / <span class="number">2</span> + (winSize.width - <span class="keyword">this</span>._boxWidth * <span class="keyword">this</span>.col) / <span class="number">2</span> + (j + <span class="number">1</span> / <span class="number">2</span>) * <span class="keyword">this</span>._boxWidth;</span><br><span class="line">        <span class="keyword">let</span> y = <span class="number">270</span> - i * <span class="keyword">this</span>._boxWidth;</span><br><span class="line">        o.pos = cc.p(x, y);</span><br><span class="line">        <span class="keyword">let</span> index = o.index;</span><br><span class="line">        o.val = <span class="keyword">this</span>._arrs[index].type;</span><br><span class="line">        <span class="keyword">let</span> box = <span class="keyword">this</span>.newBox(o.val - <span class="number">1</span>);</span><br><span class="line">        box.setPosition(o.pos);</span><br><span class="line">        box.setTag(o.index);</span><br><span class="line">        o.box = box;</span><br><span class="line">        <span class="keyword">this</span>.arr[o.index] = o;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">newBox(index) &#123;</span><br><span class="line">        <span class="keyword">let</span> box = cc.instantiate(<span class="keyword">this</span>.box);</span><br><span class="line">        <span class="keyword">this</span>.node.addChild(box);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">let</span> dynamicNode = <span class="keyword">new</span> cc.Node();</span><br><span class="line">        <span class="keyword">let</span> sp = dynamicNode.addComponent(cc.Sprite);</span><br><span class="line">        sp.spriteFrame = <span class="keyword">this</span>.picArrs[index];</span><br><span class="line">        box._spNode = dynamicNode;</span><br><span class="line">        box.addChild(dynamicNode)</span><br><span class="line"></span><br><span class="line">        box.setScale(<span class="keyword">this</span>._boxWidth / box.width);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 绑定点击事件</span></span><br><span class="line">        box.on(cc.Node.EventType.TOUCH_END, (event) =&gt; &#123;</span><br><span class="line">            <span class="keyword">let</span> idx = event.currentTarget.getTag();</span><br><span class="line">            <span class="keyword">if</span> (!<span class="keyword">this</span>.arr[idx].box) <span class="keyword">return</span>;</span><br><span class="line">            <span class="keyword">let</span> point = <span class="keyword">this</span>.arr[idx];</span><br><span class="line">            <span class="keyword">if</span> (!point.isValid || !point.box) <span class="keyword">return</span>;</span><br><span class="line">            <span class="keyword">let</span> targetPoints = <span class="keyword">this</span>.getChunk(point, [], [], <span class="literal">true</span>);</span><br><span class="line">            targetPoints.length &gt; <span class="number">1</span> &amp;&amp; <span class="keyword">this</span>.clearPoints(targetPoints);</span><br><span class="line">        &#125;)</span><br><span class="line">        <span class="keyword">return</span> box;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></p>
+<p>接下来我们来写点击事件的处理，就是获取所有的相连在一起的块，写个递归，这里的val === 9 跟 === 10 指的是炸弹，可以用来炸一整行或者一整列，还可以把已经无效变黑的块也一起炸掉。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line">getChunk(point, existIdxs, result, isFirst) &#123;</span><br><span class="line">    <span class="keyword">if</span> (isFirst) &#123;</span><br><span class="line">        <span class="keyword">if</span> (point.val === <span class="number">9</span>) &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; <span class="keyword">this</span>.row; i++) &#123;</span><br><span class="line">                <span class="keyword">let</span> idx = point.point[<span class="number">0</span>] + i * <span class="keyword">this</span>.col;</span><br><span class="line">                <span class="keyword">if</span> (<span class="keyword">this</span>.arr[idx].box) &#123;</span><br><span class="line">                    result.push(<span class="keyword">this</span>.arr[idx]);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">return</span> result</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (point.val === <span class="number">10</span>) &#123; <span class="comment">// 左右炸弹 炸整行 不用判断是否是isValid</span></span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; <span class="keyword">this</span>.col; i++) &#123;</span><br><span class="line">                <span class="keyword">let</span> idx = i + <span class="keyword">this</span>.col * point.point[<span class="number">1</span>];</span><br><span class="line">                <span class="keyword">if</span> (<span class="keyword">this</span>.arr[idx].box) &#123;</span><br><span class="line">                    result.push(<span class="keyword">this</span>.arr[idx]);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">return</span> result</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">let</span> aAroundPoints = [point].concat(<span class="keyword">this</span>.getAroundPoints(point));</span><br><span class="line">    aAroundPoints.forEach(<span class="function"><span class="params">item</span> =&gt;</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> (existIdxs.indexOf(item.index) &lt; <span class="number">0</span>) &#123;</span><br><span class="line">            existIdxs.push(item.index);</span><br><span class="line">            result.push(item);</span><br><span class="line">            result.concat(<span class="keyword">this</span>.getChunk(item, existIdxs, result, <span class="literal">false</span>));</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">    <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 这个函数用来获取某个点的上下左右四个点与这个点是否同个类型，也就是图片是一样的，组成数组。</span></span><br><span class="line">getAroundPoints(point) &#123;</span><br><span class="line">    <span class="keyword">let</span> result = [];</span><br><span class="line">    <span class="keyword">if</span> (!point.isValid) <span class="keyword">return</span> result;</span><br><span class="line">    <span class="comment">// 上下炸弹 炸整列 不用判断是否是isValid</span></span><br><span class="line">    <span class="keyword">let</span> leftPoint = <span class="keyword">this</span>.arr[point.index - <span class="number">1</span>];</span><br><span class="line">    <span class="keyword">if</span> (leftPoint &amp;&amp; leftPoint.box &amp;&amp; leftPoint.isValid &amp;&amp; point.point[<span class="number">0</span>] !== <span class="number">0</span> &amp;&amp; leftPoint.val === point.val) &#123;</span><br><span class="line">        result.push(leftPoint);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">let</span> rightPoint = <span class="keyword">this</span>.arr[point.index + <span class="number">1</span>];</span><br><span class="line">    <span class="keyword">if</span> (rightPoint &amp;&amp; rightPoint.box &amp;&amp; rightPoint.isValid &amp;&amp; point.point[<span class="number">0</span>] !== <span class="keyword">this</span>.col - <span class="number">1</span> &amp;&amp; rightPoint.val === point.val) &#123;</span><br><span class="line">        result.push(rightPoint);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">let</span> topPoint = <span class="keyword">this</span>.arr[point.index - <span class="keyword">this</span>.col];</span><br><span class="line">    <span class="keyword">if</span> (topPoint &amp;&amp; topPoint.box &amp;&amp; topPoint.isValid &amp;&amp; point.point[<span class="number">1</span>] !== <span class="number">0</span> &amp;&amp; topPoint.val === point.val) &#123;</span><br><span class="line">        result.push(topPoint);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">let</span> bottomPoint = <span class="keyword">this</span>.arr[point.index + <span class="keyword">this</span>.col];</span><br><span class="line">    <span class="keyword">if</span> (bottomPoint &amp;&amp; bottomPoint.box &amp;&amp; bottomPoint.isValid &amp;&amp; point.point[<span class="number">1</span>] !== <span class="keyword">this</span>.row - <span class="number">1</span> &amp;&amp; bottomPoint.val === point.val) &#123;</span><br><span class="line">        result.push(bottomPoint);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>清楚点击的块的代码，清除每个点然后把每行最大的索引记录到一个map里边，方便下面处理往下砸的格子。checkClickEnable是用来判断是否还有可点的区域，如果没有的话补充格子并把之前的格子设置无效并黑化。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br></pre></td><td class="code"><pre><span class="line">clearPoints(points) &#123;</span><br><span class="line">    <span class="keyword">let</span> _map = &#123;&#125;;</span><br><span class="line">    points.forEach(<span class="function"><span class="params">item</span> =&gt;</span> &#123;</span><br><span class="line">        <span class="keyword">let</span> o = _map[item.point[<span class="number">0</span>]];</span><br><span class="line">        <span class="keyword">if</span> (!o) &#123;</span><br><span class="line">            o = &#123;</span><br><span class="line">                maxIdx: item.index</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            item.index &gt; o.maxIdx &amp;&amp; (o.maxIdx = item.index);</span><br><span class="line">        &#125;</span><br><span class="line">        item.box.destroy();</span><br><span class="line">        item.box = <span class="literal">null</span>;</span><br><span class="line">        item.val = <span class="literal">null</span>;</span><br><span class="line">        _map[item.point[<span class="number">0</span>]] = o;</span><br><span class="line">    &#125;);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> x <span class="keyword">in</span> _map) &#123;</span><br><span class="line">        <span class="keyword">let</span> maxIdx = _map[x].maxIdx;</span><br><span class="line">        <span class="keyword">let</span> result = [];</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; <span class="keyword">this</span>.row; i++) &#123;</span><br><span class="line">            <span class="keyword">let</span> idx = <span class="built_in">parseInt</span>(x) + i * <span class="keyword">this</span>.col;</span><br><span class="line">            <span class="keyword">if</span> (<span class="keyword">this</span>.arr[idx] &amp;&amp; idx &lt; maxIdx) result.push(<span class="keyword">this</span>.arr[idx]);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">this</span>.movePoints(result, maxIdx);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">this</span>.scheduleOnce(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">        <span class="keyword">this</span>.checkClickEnable();</span><br><span class="line">    &#125;, <span class="number">.3</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 移动点函数，这个地方倒叙是因为位于下面Y坐标较大的先掉下去，这样方便后面清除数据。</span></span><br><span class="line">movePoints(points, maxIdx) &#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> i = points.length - <span class="number">1</span>; i &gt;= <span class="number">0</span>; i--) &#123;</span><br><span class="line">        <span class="keyword">let</span> item = points[i];</span><br><span class="line">        <span class="keyword">let</span> len = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">let</span> j = item.point[<span class="number">1</span>] + <span class="number">1</span>; j &lt; <span class="keyword">this</span>.row; j++) &#123;</span><br><span class="line">            <span class="keyword">var</span> index = item.point[<span class="number">0</span>] + j * <span class="keyword">this</span>.col;</span><br><span class="line">            <span class="keyword">if</span> (!<span class="keyword">this</span>.arr[index].box) len++;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">let</span> nextIdx = item.index + <span class="keyword">this</span>.col * len;</span><br><span class="line">        <span class="keyword">let</span> target = <span class="keyword">this</span>.arr[nextIdx];</span><br><span class="line">        target.val = item.val;</span><br><span class="line">        target.box = item.box;</span><br><span class="line">        <span class="keyword">if</span> (target.box) &#123;</span><br><span class="line">            target.box.setTag(target.index);</span><br><span class="line">            target.box.runAction(cc.moveTo(<span class="number">.2</span>, target.pos));</span><br><span class="line">        &#125;</span><br><span class="line">        item.val = <span class="literal">null</span>;</span><br><span class="line">        item.box = <span class="literal">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 判断是否还有可点区域</span></span><br><span class="line">checkClickEnable() &#123;</span><br><span class="line">    <span class="keyword">let</span> enable = <span class="literal">false</span>;</span><br><span class="line">    <span class="keyword">this</span>.arr.forEach(<span class="function"><span class="params">item</span> =&gt;</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> (item.box) &#123;</span><br><span class="line">            <span class="keyword">let</span> points = <span class="keyword">this</span>.getAroundPoints(item);</span><br><span class="line">            <span class="keyword">if</span> (item.val === <span class="number">9</span> || item.val === <span class="number">10</span> || points.length &gt; <span class="number">0</span>) &#123;</span><br><span class="line">                enable = <span class="literal">true</span>;</span><br><span class="line">                <span class="keyword">return</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">    <span class="keyword">if</span> (!enable) &#123;</span><br><span class="line">        <span class="keyword">this</span>.setDisable();</span><br><span class="line">        <span class="keyword">if</span> (<span class="keyword">this</span>.arr.every(<span class="function"><span class="params">item</span> =&gt;</span> item.box)) &#123;</span><br><span class="line">            <span class="keyword">this</span>.gameOver();</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">this</span>.setNextRound();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 设置格子无效黑化</span></span><br><span class="line">setDisable() &#123;</span><br><span class="line">    <span class="keyword">this</span>.arr.forEach(<span class="function"><span class="params">item</span> =&gt;</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> (item.box) &#123;</span><br><span class="line">            item.isValid = <span class="literal">false</span>;</span><br><span class="line">            item.box._spNode.setColor(cc.color(<span class="number">150</span>, <span class="number">150</span>, <span class="number">150</span>));</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 继续下一轮掉盒子，这里加了炸弹，几率比较小。</span></span><br><span class="line">setNextRound() &#123;</span><br><span class="line">    <span class="keyword">let</span> _map = &#123;&#125;</span><br><span class="line">    <span class="keyword">this</span>.arr.forEach(<span class="function"><span class="params">item</span> =&gt;</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> (!item.box) &#123;</span><br><span class="line">            <span class="keyword">let</span> o = _map[item.point[<span class="number">0</span>]];</span><br><span class="line">            <span class="keyword">if</span> (!o) &#123;</span><br><span class="line">                o = &#123;</span><br><span class="line">                    count: <span class="number">1</span>,</span><br><span class="line">                    maxY: item.point[<span class="number">1</span>],</span><br><span class="line">                    points: [item]</span><br><span class="line">                &#125;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                o.count += <span class="number">1</span>;</span><br><span class="line">                item.point[<span class="number">1</span>] &gt; o.maxY &amp;&amp; (o.maxY = item.point[<span class="number">1</span>]);</span><br><span class="line">                o.points.unshift(item)</span><br><span class="line">            &#125;</span><br><span class="line">            _map[item.point[<span class="number">0</span>]] = o;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> x <span class="keyword">in</span> _map) &#123;</span><br><span class="line">        <span class="keyword">this</span>.createColBox(x, _map[x])</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">this</span>.scheduleOnce(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">        <span class="keyword">this</span>.checkClickEnable();</span><br><span class="line">    &#125;, <span class="number">0.3</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 创建每行的格子。</span></span><br><span class="line">createColBox(x, obj) &#123;</span><br><span class="line">    <span class="keyword">let</span> len = obj.count;</span><br><span class="line">    <span class="keyword">let</span> maxY = obj.maxY;</span><br><span class="line">    <span class="keyword">let</span> points = obj.points;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; len; i++) &#123;</span><br><span class="line">        <span class="keyword">let</span> random = cc.random0To1();</span><br><span class="line">        <span class="keyword">let</span> val;</span><br><span class="line">        <span class="keyword">if</span> (random &lt; <span class="keyword">this</span>._probability) &#123;</span><br><span class="line">            val = <span class="number">8</span>;</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (random &gt; <span class="keyword">this</span>._probability &amp;&amp; random &lt; <span class="keyword">this</span>._probability * <span class="number">2</span>) &#123;</span><br><span class="line">            val = <span class="number">9</span>;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            val = (<span class="number">0</span> | cc.random0To1() * (<span class="keyword">this</span>.picArrs.length - <span class="number">2</span>));</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">let</span> box = <span class="keyword">this</span>.newBox(val);</span><br><span class="line">        <span class="keyword">let</span> topBox = <span class="keyword">this</span>.arr[x];</span><br><span class="line">        box.setPosition(cc.p(topBox.pos.x, topBox.pos.y + <span class="keyword">this</span>._boxWidth * (i + <span class="number">1</span>)));</span><br><span class="line">        <span class="keyword">let</span> target = points[i];</span><br><span class="line">        box.setTag(target.index);</span><br><span class="line">        target.box = box;</span><br><span class="line">        target.val = val + <span class="number">1</span>;</span><br><span class="line">        target.isValid = <span class="literal">true</span>;</span><br><span class="line">        box.runAction(cc.moveTo(<span class="number">0.2</span>, target.pos));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+
+
+
+            <!-- Pager -->
+            <ul class="pager">
+                
+                
+                <li class="next">
+                    <a href="/2018/04/05/lianliankan/" >Next Post &rarr;</a>
+                </li>
+                
+            </ul>
+
+
+
+        </div>
+        <!-- Sidebar container-->
+        <div class="
+    col-lg-3 col-lg-offset-0
+    col-md-3 col-md-offset-0
+    col-sm-12
+    col-xs-12
+    sidebar-container
+">
+            <!-- toc -->
+            <div class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix-top" role="complementary">
+                <h4><i class="fa fa-bookmark"></i> Catalog</h4>
+                <ul class="nav bs-docs-sidenav">
+
+                </ul>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!-- Footer -->
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; Peyton Blog 2018
+                    <br>
+                    Theme by <a href="http://beantech.org/">Bean Tech</a>
+                    <span style="display: inline-block; margin: 0 5px;">
+                        <i class="fa fa-heart"></i>
+                    </span> 
+                    re-Ported by <a href="http://yoursite.com">Peyton Blog</a>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="https://cdn.staticfile.org/jquery/2.2.4/jquery.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/script.js"></script>
+
+
+
+
+</body>
+</html>
