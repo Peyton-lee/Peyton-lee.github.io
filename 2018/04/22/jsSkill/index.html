@@ -1,0 +1,229 @@
+<!doctype html>
+<html lang="en">
+
+<!-- Head -->
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="description" content="">
+    <meta name="keyword" content="">
+    <link rel="shortcut icon" href="/image/favicon.jpeg">
+
+    
+
+    <title>
+        
+        Javascript 相关技巧 |
+        
+        Peyton Blog
+    </title>
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+
+    <!-- Custom Fonts -->
+    <link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <!-- Plugin CSS -->
+
+
+    <!-- Custom CSS -->
+    <!-- ↓这是stylus文件 -->
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/home.css">
+    <link rel="stylesheet" href="/css/highlight.css">
+    <link rel="stylesheet" href="/css/toc.css">
+
+
+</head>
+<body></body>
+
+
+<body>
+
+<!-- Header -->
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header {
+     background-image: url('head.png');
+        /*post*/
+    
+    }
+</style>
+
+<header class="intro-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <!-- 文章 -->
+                
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                        <a class="tag" href="/tags/#javascript"
+                           title="javascript">javascript</a>
+                        
+                    </div>
+                    <h1>Javascript 相关技巧</h1>
+                    <h2 class="subheading">Creator 入门</h2>
+                    <span class="meta">
+                            Posted by Peyton on
+                        2018-04-22
+                        </span>
+                </div>
+                <!-- 非文章 -->
+                
+
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Nav -->
+<!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Peyton Blog</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    
+                    <li><a href="/">Home</a></li>
+                    
+                    <li><a href="https://github.com/Peyton-lee">GitHub</a></li>
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+
+<!-- Content -->
+<!-- Content -->
+<div class="container">
+    <div class="row">
+        <!-- Post container -->
+
+        <div class="
+                col-lg-8 col-lg-offset-1
+                col-md-8 col-md-offset-1
+                col-sm-12
+                col-xs-12
+                post-container
+            ">
+
+            <p><br></p>
+<h2 id="forEach如何跳出循环"><a href="#forEach如何跳出循环" class="headerlink" title="forEach如何跳出循环"></a>forEach如何跳出循环</h2><blockquote>
+<p>遍历的时候经常用到一个数组的方法，没错，就是forEach，但是如果我们想让它像for循环一样遍历到一半跳出循环呢，forEach并没有break，这里我们有两种方式</p>
+</blockquote>
+<h4 id="try-catch"><a href="#try-catch" class="headerlink" title="try catch"></a>try catch</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arr = [<span class="number">1</span>, <span class="number">3</span>, <span class="number">2</span>, <span class="number">7</span>, <span class="number">3</span>, <span class="number">9</span>, <span class="number">12</span>, <span class="number">2</span>, <span class="number">5</span>];</span><br><span class="line"><span class="keyword">var</span> result = [];</span><br><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">    arr.forEach(<span class="function"><span class="params">item</span> =&gt;</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> (item === <span class="number">9</span>) <span class="built_in">eval</span>(<span class="string">'break'</span>);</span><br><span class="line">        result.push(item)</span><br><span class="line">    &#125;)</span><br><span class="line">&#125; <span class="keyword">catch</span>(err) &#123;</span><br><span class="line">    <span class="comment">// console.log(err)</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(result) <span class="comment">// [1, 3, 2, 7, 3]</span></span><br></pre></td></tr></table></figure>
+<h4 id="some替换forEach"><a href="#some替换forEach" class="headerlink" title="some替换forEach"></a>some替换forEach</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arr = [<span class="number">1</span>, <span class="number">3</span>, <span class="number">2</span>, <span class="number">7</span>, <span class="number">3</span>, <span class="number">9</span>, <span class="number">12</span>, <span class="number">2</span>, <span class="number">5</span>];</span><br><span class="line"><span class="keyword">var</span> result = [];</span><br><span class="line">arr.some(<span class="function"><span class="params">item</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (item === <span class="number">9</span>) <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    result.push(item)</span><br><span class="line">&#125;)</span><br><span class="line"><span class="built_in">console</span>.log(result) <span class="comment">// [1, 3, 2, 7, 3]</span></span><br></pre></td></tr></table></figure>
+<p><br></p>
+<h2 id="自定义数组删除函数remove"><a href="#自定义数组删除函数remove" class="headerlink" title="自定义数组删除函数remove"></a>自定义数组删除函数remove</h2><blockquote>
+<p>我们都知道数组有个<code>splice</code>的方法用来删除，但如果我们的需求是要删除满足一定条件的元素，并将其被删除掉的元素返回回来呢，让我们把他写到<code>Array</code>的原型链上面</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 这里用了定义属性的方法，避免可以被for in遍历出来，enumerable为false 不可枚举</span></span><br><span class="line"><span class="built_in">Object</span>.defineProperties(<span class="built_in">Array</span>.prototype, &#123;</span><br><span class="line">    <span class="string">'remove'</span>: &#123;</span><br><span class="line">        enumerable: <span class="literal">false</span>,</span><br><span class="line">        configurable: <span class="literal">false</span>,</span><br><span class="line">        writable: <span class="literal">false</span>,</span><br><span class="line">        value: <span class="function"><span class="keyword">function</span> (<span class="params">callback</span>) </span>&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">this</span>._splice(<span class="number">0</span>, [], callback);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line"></span><br><span class="line">    <span class="string">'_splice'</span>: &#123;</span><br><span class="line">        enumerable: <span class="literal">false</span>,</span><br><span class="line">        configurable: <span class="literal">false</span>,</span><br><span class="line">        writable: <span class="literal">false</span>,</span><br><span class="line">        value: <span class="function"><span class="keyword">function</span> (<span class="params">pre, result, callback</span>) </span>&#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">var</span> i = pre; i &lt; <span class="keyword">this</span>.length; i++) &#123;</span><br><span class="line">                <span class="keyword">if</span> (callback(<span class="keyword">this</span>[i])) &#123;</span><br><span class="line">                    result.push(<span class="keyword">this</span>[i]);</span><br><span class="line">                    <span class="keyword">this</span>.splice(i, <span class="number">1</span>);</span><br><span class="line">                    <span class="keyword">this</span>._splice(i, result, callback);</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">return</span> result;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 例子</span></span><br><span class="line"><span class="keyword">let</span> aOld = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>];</span><br><span class="line"><span class="keyword">let</span> aRemove = aOld.remove(<span class="function"><span class="keyword">function</span> (<span class="params">item</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> item === <span class="number">1</span></span><br><span class="line">&#125;)</span><br><span class="line"><span class="built_in">console</span>.log(aOld) <span class="comment">// [2, 3]</span></span><br><span class="line"><span class="built_in">console</span>.log(aRemove) <span class="comment">// [1]</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 对象也是可以的喔</span></span><br><span class="line"><span class="keyword">let</span> aOld = [&#123;<span class="attr">score</span>: <span class="number">100</span>&#125;, &#123;<span class="attr">score</span>: <span class="number">50</span>&#125;, &#123;<span class="attr">score</span>: <span class="number">66</span>&#125;];</span><br><span class="line"><span class="keyword">let</span> aRemove = aOld.remove(<span class="function"><span class="keyword">function</span> (<span class="params">item</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> item.score &lt; <span class="number">60</span></span><br><span class="line">&#125;)</span><br><span class="line"><span class="built_in">console</span>.log(aOld) <span class="comment">// [&#123;score: 100&#125;, &#123;score: 66&#125;]</span></span><br><span class="line"><span class="built_in">console</span>.log(aRemove) <span class="comment">// [&#123;score: 50&#125;]</span></span><br></pre></td></tr></table></figure>
+<p><br></p>
+<h2 id="事件机制"><a href="#事件机制" class="headerlink" title="事件机制"></a>事件机制</h2><blockquote>
+<p><strong>node.js</strong>有个<code>event</code>模块，功能大概是事件绑定跟事件触发的机制，也就是我们俗称的回调，我们模拟一下大概过程，自己封装成一个事件回调模块</p>
+</blockquote>
+<p>首先，我们需要这样一个构造函数，两个属性，一个是记录用来绑定的DOM元素，另外一个是一个空的对象，用来做一个map存储你要注册的所有事件，因为map的key是唯一的，刚好对应事件名是唯一的。<br><a href="https://github.com/Peyton-lee/js-encapsulation/blob/master/Events.js" target="_blank" rel="noopener"><strong>源码在这里</strong></a><br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">EventListener</span>(<span class="params">scope</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>._target = scope;</span><br><span class="line">    <span class="keyword">this</span>._eventCaches = &#123;&#125;;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+<p>其次是绑定事件函数，就是把事件名跟函数记录到map里面<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">on: <span class="function"><span class="keyword">function</span> (<span class="params">eventName, callback</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (!eventName || <span class="keyword">typeof</span> eventName !== <span class="string">"string"</span>) &#123;</span><br><span class="line">        <span class="keyword">this</span>.error(<span class="string">"check your first parameter."</span>);</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">typeof</span> callback !== <span class="string">"function"</span>) &#123;</span><br><span class="line">        <span class="keyword">this</span>.error(<span class="string">"The callback is not a function."</span>);</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">this</span>._eventCaches[eventName]) &#123;</span><br><span class="line">        <span class="keyword">this</span>.error(<span class="string">"The event ["</span> + eventName + <span class="string">"] has already existed."</span>);</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">this</span>._eventCaches[eventName] = callback;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>再然后是触发事件函数，也就是触发回调的地方<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">emit: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> eventName = <span class="built_in">arguments</span>[<span class="number">0</span>];</span><br><span class="line">    <span class="keyword">if</span> (!eventName || <span class="keyword">typeof</span> eventName !== <span class="string">"string"</span>) &#123;</span><br><span class="line">        <span class="keyword">this</span>.error(<span class="string">"Check your incoming parameters."</span>);</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (!<span class="keyword">this</span>._eventCaches[eventName]) &#123;</span><br><span class="line">        <span class="keyword">this</span>.error(<span class="string">"The event ["</span> + eventName + <span class="string">"] has not existed."</span>);</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// remove the first parameter</span></span><br><span class="line">    <span class="keyword">var</span> params = <span class="built_in">Array</span>.prototype.slice.call(<span class="built_in">arguments</span>, <span class="number">1</span>, <span class="built_in">arguments</span>.length);</span><br><span class="line">    <span class="keyword">this</span>._eventCaches[eventName].apply(<span class="keyword">this</span>._target, params);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+
+
+
+            <!-- Pager -->
+            <ul class="pager">
+                
+                
+                <li class="next">
+                    <a href="/2018/04/11/xiaoxiaole/" >Next Post &rarr;</a>
+                </li>
+                
+            </ul>
+
+
+
+        </div>
+        <!-- Sidebar container-->
+        <div class="
+    col-lg-3 col-lg-offset-0
+    col-md-3 col-md-offset-0
+    col-sm-12
+    col-xs-12
+    sidebar-container
+">
+            <!-- toc -->
+            <div class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix-top" role="complementary">
+                <h4><i class="fa fa-bookmark"></i> Catalog</h4>
+                <ul class="nav bs-docs-sidenav">
+
+                </ul>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!-- Footer -->
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; Peyton Blog 2018
+                    <br>
+                    Theme by <a href="http://beantech.org/">Bean Tech</a>
+                    <span style="display: inline-block; margin: 0 5px;">
+                        <i class="fa fa-heart"></i>
+                    </span> 
+                    re-Ported by <a href="http://yoursite.com">Peyton Blog</a>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="https://cdn.staticfile.org/jquery/2.2.4/jquery.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/script.js"></script>
+
+
+
+
+</body>
+</html>
